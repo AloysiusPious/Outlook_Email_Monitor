@@ -1,0 +1,10 @@
+###  Required Python Libraries
+####################################
+win32com.client
+csv
+os
+re
+datetime
+pandas
+matplotlib.pyplot
+configparser
