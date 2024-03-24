@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitoring Alert Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function showMessage() {
+            var count = 10; // Countdown time in seconds
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            var timer = setInterval(function() {
+                document.getElementsByClassName('alert')[0].innerText = "Report will be generated and sent to your email in " + count + " seconds.";
+                count--;
+                if (count < 0) {
+                    clearInterval(timer);
+                    document.getElementsByClassName('alert')[0].style.display = 'none';
+                    submitBtn.disabled = false;
+                    alert("Report will be generated and sent to your email.");
+                }
+            }, 1000); // Update every second
+        }
+
+    </script>
+</head>
+<body>
+    <h1>XYZ Monitoring Alert Report</h1>
+    <form action="/" method="post" onsubmit="showMessage()">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="Enter Start Date"><br>
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="Enter End Date"><br>
+        <label for="mail_to">Email To:</label>
+        <input type="email" id="mail_to" name="mail_to" value="sys1.mon1@xyz.sa"><br>
+        <label for="incident_threshold">Incident Threshold:</label>
+        <input type="number" id="incident_threshold" name="incident_threshold" value="5"><br>
+        <label for="frequency_window">Frequency Window (Minutes):</label>
+        <input type="number" id="frequency_window" name="frequency_window" value="10"><br>
+        <input type="submit" id="submitBtn" value="Submit">
+    </form>
+    <div class="alert">Report will be generated and sent to your email.</div>
+</body>
+</html>
